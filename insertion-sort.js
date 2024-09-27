@@ -19,6 +19,30 @@ function insertionSort(arr) {
   */
 
   // Your code here
+  let unsorted = [...arr];
+  let sorted = [];
+
+  while (unsorted.length > 0) {
+    console.log(sorted.join(','));
+    let value = unsorted.pop();
+
+    if (sorted.length === 0) {
+      sorted.push(value);
+    } else {
+      let inserted = false;
+      for (let i = sorted.length - 1; i >= 0; i--) {
+        if (sorted[i] < value) {
+          sorted.splice(i + 1, 0, value);
+          inserted = true;
+          break;
+        }
+      }
+      if (!inserted) {
+        sorted.unshift(value);
+      }
+    }
+  }
+  return sorted;
 }
 
 // In-place Insertion Sort
@@ -41,6 +65,17 @@ function insertionSortInPlace(arr) {
   */
 
   // Your code here
+  for (let i = 1; i < arr.length; i++) {
+    console.log(arr.join(','));
+    let value = arr[i];
+    let j = i - 1;
+    while (j >= 0 && arr[j] > value) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+    arr[j + 1] = value;
+  }
+  return arr;
 }
 
 module.exports = [insertionSort, insertionSortInPlace];
